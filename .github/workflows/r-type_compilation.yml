@@ -17,6 +17,12 @@ jobs:
       - name: Build R-Type
         run: ./install.sh
 
+      - name: Create linux binaries artifacts for Github
+        uses: actions/upload-artifact@v3
+        with:
+          name: Linux_deliverable
+          path: bin/linux
+
   R-type_windows:
     runs-on: windows-latest
     steps:
@@ -26,11 +32,8 @@ jobs:
       - name: Build R-Type
         run: .\install.bat
 
-  Create_artifacts:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create binaries artifacts for Github
+      - name: Create windows binaries artifacts for Github
         uses: actions/upload-artifact@v3
         with:
-          name: binaries
-          path: bin
+          name: Windows_deliverable
+          path: bin/windows
