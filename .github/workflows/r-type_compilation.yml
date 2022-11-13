@@ -1,0 +1,36 @@
+name: R-type CI
+run-name: R-TYPE compilation
+on: [push]
+#   push:
+#     branches:
+#       - 'master'
+#   pull_request:
+#     branches:
+#       - 'master'
+jobs:
+  R-type_linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Build R-Type
+        run: ./install.sh
+
+  R-type_windows:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Build R-Type
+        run: .\install.bat
+
+  Create_artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create binaries artifacts for Github
+        uses: actions/upload-artifact@v3
+        with:
+          name: binaries
+          path: bin
